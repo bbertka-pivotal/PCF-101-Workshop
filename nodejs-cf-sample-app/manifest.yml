@@ -1,0 +1,7 @@
+---
+applications:
+- name: nodejs-prod
+  host: nodejs-prod
+  memory: 128M
+  instances: 1
+  path: .
