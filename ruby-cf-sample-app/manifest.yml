@@ -3,5 +3,5 @@ applications:
 - name: ruby-demo
   memory: 128M
   instances: 1
-  host: ruby-demo
+  host: ruby-demo-${random-word}
   path: .
