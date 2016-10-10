@@ -7,7 +7,7 @@ This one day hands-on classroom style session will provide developers (and opera
 10:00 AM - 10:45 AM:: 
  * Session 1: _Cloud Native Introduction & Building Microservices_
 
-Session 1 is an overview of Cloud Foundry at Disney and how you can support a multi-cloud portable strategy for applications and pipelines with minimal overhead.
+Session 1 is an overview of Cloud Foundry and how you can support a multi-cloud portable strategy for applications and pipelines with minimal overhead.
 
 10:45 AM - 11:00 AM:: BREAK
 
