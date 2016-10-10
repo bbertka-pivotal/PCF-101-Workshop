@@ -38,7 +38,7 @@ Creating service circuit-breaker in org microservices / space fortune-teller as 
 OK
 ----
 
-. In the Pivotal Cloud Foundry Apps Manager console, click on the *Manage* link for the *Config Server*. Once the service is initialized and the web form appears, paste the URL of this repository (https://github.com/bbertka/PCF-Workshop-Dis) into the *Git URI* field and "spring-cloud-services-app/configuration" into the *Search Paths* field. Then click *Submit*.
+. In the Pivotal Cloud Foundry Apps Manager console, click on the *Manage* link for the *Config Server*. Once the service is initialized and the web form appears, paste the URL of this repository (https://github.com/bbertka-pivotal/PCF-101-Workshop) into the *Git URI* field and "spring-cloud-services-app/configuration" into the *Search Paths* field. Then click *Submit*.
 
 . Also click on the *Manage* links for the *Service Registry* and *Circuit Breaker*. Make sure the services are finished initializing before you proceed.
 
