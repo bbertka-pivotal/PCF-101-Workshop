@@ -11,7 +11,7 @@
 . Login to Pivotal Cloudfoundry:
 +
 ----
-$ cf login -a https://api.sys.tt-01.cf.t-mobile.com -sso --skip-ssl-validation
+$ cf login -a https://api.sys.tt-01.cf.t-mobile.com --skip-ssl-validation
 ----
 +
 Follow the prompts
