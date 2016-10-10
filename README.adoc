@@ -32,16 +32,16 @@ Session 2 is a deep dive on Platforms, Cloud Foundry, and Containers from both a
 ** Pre-work
 *** link:labs/README.adoc[Get Environment Access]
 ** Lab 1 - From Zero to Pushing Your First Application
-*** link:labs/lab1/lab.adoc[**Java** Application]
+*** link:labs/lab1/README.adoc[**Java** Application]
 *** link:labs/lab1/cloud-native-spring.adoc[**Spring Boot** Application (start.spring.io)]
 *** link:labs/lab1/lab-ruby.adoc[**Ruby** Application]
 *** link:labs/lab1/lab-node.adoc[**NodeJS** Application]
 *** link:labs/lab1/lab-dotnet.adoc[**.NET** Application]
-** link:labs/lab2/lab.adoc[Lab 2 - Binding to Cloud Foundry Services]
-** link:labs/lab3/lab.adoc[Lab 3 - Operating Your Application]
-** link:labs/lab4/lab.adoc[Lab 4 - Monitoring Your Application]
+** link:labs/lab2/README.adoc[Lab 2 - Binding to Cloud Foundry Services]
+** link:labs/lab3/README.adoc[Lab 3 - Operating Your Application]
+** link:labs/lab4/README.adoc[Lab 4 - Monitoring Your Application]
 ** Advanced Lab - Jenkins Integration
-*** link:labs/lab5/continuous-delivery-lab.adoc[Java App - Gradle Build]
+*** link:labs/lab5/README.adoc[Java App - Gradle Build]
 *** Java app - Maven Build (To be Added)
 ** Advanced Lab - Spring Cloud & Netflix OSS 
 *** link:labs/lab6/README.adoc[Fortune Teller Project]
