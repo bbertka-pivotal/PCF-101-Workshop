@@ -1,6 +1,6 @@
 = Pivotal Cloud Foundry 101 Workshop
 
-== Agenda
+== Agenda / Schedule
 
 This one day hands-on classroom style session will provide developers (and operators) with hands on experience with Pivotal Cloud Foundry concepts, architecture and fundamentals of pushing code and building applications. The session includes presentations, demos and hands on labs, including pushing native code and Docker images.
 
