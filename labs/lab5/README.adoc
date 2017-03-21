@@ -71,3 +71,6 @@ tar -zxvf ./cf.tgz
 . Select the build in *Build History*, then select *Console Output*.
 
 . Jenkins should build and push the app, then you can click the link at the bottom to see the running app.
+
+== On to the next Lab!
+link:../../labs/lab6/README.adoc[Lab6 - Spring Cloud Services lab]
