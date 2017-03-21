@@ -1,7 +1,7 @@
 ---
 applications:
-- name: nodejs-prod
-  host: nodejs-prod-${random-word}
+- name: nodejs-demo
+  host: nodejs-demo-${random-word}
   memory: 128M
   instances: 1
   path: .

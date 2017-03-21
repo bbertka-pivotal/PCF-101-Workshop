@@ -42,7 +42,22 @@ OK
 
 . Also click on the *Manage* links for the *Service Registry* and *Circuit Breaker*. Make sure the services are finished initializing before you proceed.
 
-. Edit the `manifest.yml` file to specify the Cloud Foundry target the apps are being pushed to, replacing the URL in `CF_TARGET: https://api.cf.yourcompany.com` with the API endpoint for your Cloud Foundry deployment.
+. Check that service creation succeeded for all of your services before you proceed using the cf services command
+
++
+---
+cf services
+---
++
++
+---
+name               service                       plan       bound apps   last operation
+circuit-breaker    p-circuit-breaker-dashboard   standard                *create succeeded*
+config-service     p-config-server               standard                *create succeeded*
+fortunes-db        p-mysql                       100mb                   *create succeeded*
+service-registry   p-service-registry            standard                *create succeeded*
+---
++
 
 . Push the microservices:
 
