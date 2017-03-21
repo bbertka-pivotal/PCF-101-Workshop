@@ -49,7 +49,6 @@ OK
 cf services
 ----
 +
-+
 ----
 name               service                       plan       bound apps   last operation
 circuit-breaker    p-circuit-breaker-dashboard   standard                *create succeeded*
@@ -57,7 +56,7 @@ config-service     p-config-server               standard                *create
 fortunes-db        p-mysql                       100mb                   *create succeeded*
 service-registry   p-service-registry            standard                *create succeeded*
 ----
-+
+
 
 . Push the microservices:
 
