@@ -42,6 +42,23 @@ OK
 
 . Also click on the *Manage* links for the *Service Registry* and *Circuit Breaker*. Make sure the services are finished initializing before you proceed.
 
+. Check that service creation succeeded for all of your services before you proceed using the cf services command
+
++
+---
+cf services
+---
++
++
+---
+name               service                       plan       bound apps   last operation
+circuit-breaker    p-circuit-breaker-dashboard   standard                *create succeeded*
+config-service     p-config-server               standard                *create succeeded*
+fortunes-db        p-mysql                       100mb                   *create succeeded*
+service-registry   p-service-registry            standard                *create succeeded*
+---
++
+
 . Push the microservices:
 
 +
