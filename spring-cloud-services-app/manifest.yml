@@ -18,4 +18,4 @@ applications:
   - circuit-breaker
 env:
   SPRING_PROFILES_ACTIVE: pcf
-  CF_TARGET: https://api.sys.tt-01.cf.t-mobile.com
+  CF_TARGET: https://api.sys.px-npe01.cf.t-mobile.com

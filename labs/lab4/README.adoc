@@ -21,7 +21,7 @@ _PCF Metrics provides the following data on app health and performance_
 *To get started, browse to the Metrics URL:*
 
 ----
-https://metrics.sys.tt-01.cf.t-mobile.com
+https://metrics.sys.px-npe01.cf.t-mobile.com
 ----
 
 image:metrics.png[]
