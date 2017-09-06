@@ -12,6 +12,12 @@
 $ cd $BOOTCAMP_HOME/nodejs-cf-sample-app
 ----
 
+. Vendor the NodeJS Dependencies
++
+----
+$ npm install
+----
+
 . Push the application!
 +
 ----
