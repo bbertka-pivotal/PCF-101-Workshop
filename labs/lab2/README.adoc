@@ -69,7 +69,7 @@ Once the application is running again, revisit or refresh the browser tab where 
 In fact, our data is now being retrieved from that MySQL database!
 +
 ----
-Bound Services:
+"VCAP_SERVICES":
 {
    "p-mysql":[
       {
