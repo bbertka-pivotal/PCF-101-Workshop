@@ -1,7 +1,7 @@
 ---
 applications:
 - name: nodejs-demo
-  host: nodejs-demo-${random-word}
+  random-route: true
   buildpack: nodejs_buildpack
   memory: 128M
   instances: 1
