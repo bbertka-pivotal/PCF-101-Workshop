@@ -1,8 +1,8 @@
 applications:
 - name: mvc-demo
-  memory: 512M
+  memory: 1024M
   instances: 1
-  host: springapp-${random-word}
+  random-route: true
   path: ./target/spring-cf-sample-app-0.0.1-SNAPSHOT.jar
   env:
       JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
