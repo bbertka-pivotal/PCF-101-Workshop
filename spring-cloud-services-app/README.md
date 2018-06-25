@@ -1,28 +1,25 @@
-= Spring Cloud Services Lab
+# Spring Cloud Services Lab
 
 *Fortune Teller* is a very basic application composed of two services:
 
-. link:fortune-teller-fortune-service[Fortune Service] - serves up random Chinese fortune cookie fortunes
-. link:fortune-teller-ui[Fortune UI] - presents a UI that consumes the fortune service
+[Fortune Service](fortune-teller-fortune-service) - serves up random Chinese fortune cookie fortunes
+[Fortune UI] - presents a UI that consumes the fortune service
 
 It leverages libraries and services from Spring Cloud and Netflix OSS to compose the system.
 
 Fortune Teller is deployable to any Cloud Foundry environment utilizing the service components that have been packaged with the project.
 However, it is most easily deployed to Pivotal Cloud Foundry environments that have installed the https://network.pivotal.io/products/p-spring-cloud-services[Spring Cloud Services] package.
 
-== Building
-
-. Using Maven, build and package the application:
-+
-----
+## Building
+Using Maven, build and package the application:
+```
 $ cd spring-cloud-services-app
 $ mvn package
-----
-+
+```
 Maven will automatically download all of _Fortune Teller_'s dependencies. This may take a few moments.
 
 
-== Deploying to Pivotal Cloud Foundry with Spring Cloud Services
+## Deploying to Pivotal Cloud Foundry with Spring Cloud Services
 
 . Run `scripts/create_services_pcf.sh` to create the services that you need:
 +
@@ -54,7 +51,7 @@ $ cf push
 This will push the fortunes service and the ui application and bind all of the services.
 
 
-== Testing the Application
+## Testing the Application
 
 . In a browser, access the fortunes-ui application at the route that was created for you:
 +
