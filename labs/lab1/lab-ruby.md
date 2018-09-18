@@ -1,7 +1,7 @@
 # Lab 1 - Pushing a Ruby Application
 ## Target the Environment
 
-Follow the instructions to link: [Get Environment Access](../README.md)
+Follow the instructions to link: [Get Environment Access](../overview.md)
 
 ## Push It!
 

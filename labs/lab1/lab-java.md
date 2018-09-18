@@ -1,7 +1,7 @@
 # Lab 1 - Pushing a Java application
 
 ## Target the Environment
-Follow the instructions in link: [Get Environment Access](../README.md)
+Follow the instructions in link: [Get Environment Access](../overview.md)
 
 ## Push It!
 - Change to the _spring-cf-sample-app_ application directory:  

@@ -29,7 +29,7 @@ Session 2 is a deep dive on Platforms, Cloud Foundry, and Containers from both a
 
 ### Developer Workshop
 #### Pre-work
-- [Get Environment Access](labs/README.md)
+- [Get Environment Access](labs/overview.md)
 - [Lab 1 - From Zero to Pushing Your First Application](labs/lab1/README.md)
   - [Spring Boot Application](labs/lab1/cloud-native-spring.md)
   - [Ruby Application](labs/lab1/lab-ruby.md)
