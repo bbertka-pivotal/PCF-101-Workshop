@@ -1,27 +1,22 @@
-= Lab 3 - Operating your Application
+# Lab 3 - Operating your Application
 
-[abstract]
---
+# Abstract
 Pivotal Cloudfoundry makes the work of performing operations actions, such as scaling, doing a zero-downtime deploy, and managing application health very easy.
 In the next two labs we'll explore Pivotal Cloudfoundry operations.
---
 
-== Scale the Application Up
+## Scale the Application Up
 
-. Now let's increase the number of running application instances to 3.  For this lab you can use the Java, Ruby, or Node.js sample app.  In each of the commands below replace _workshop_ with the name of your deployed application:
-+
-----
-$ cf scale -i 3 workshop
-Scaling app workshop in org DEMO / space gammon as jtgammon@pivotal.io...
-OK
-----
-+
-In reporting `OK`, the CLI is letting you know that the additional requested instances have been started, but they are not yet necessarily running.
+1. Now let's increase the number of running application instances to 3.  For this lab you can use the Java, Ruby, or Node.js sample app.  In each of the commands below replace _workshop_ with the name of your deployed application:
+    ```
+    $ cf scale -i 3 workshop
+    Scaling app workshop in org DEMO / space gammon as jtgammon@pivotal.io...
+    OK
+    ```
 
-. We can determine how many instances are actually running like this:
-+
-====
-----
+    In reporting `OK`, the CLI is letting you know that the additional requested instances have been started, but they are not yet necessarily running.
+
+2. We can determine how many instances are actually running like this:
+```
 $ cf app workshop
 Showing health and status for app workshop in org DEMO / space gammon as jtgammon@pivotal.io...
 OK
@@ -38,75 +33,72 @@ buildpack: java-buildpack=v3.0-offline-https://github.com/cloudfoundry/java-buil
 #0   running    2015-08-07 11:33:21 AM   0.1%   477.9M of 512M   144.4M of 1G  <1>
 #1   starting   2015-08-07 12:42:56 PM   0.0%   0 of 0           0 of 0  <2>
 #2   starting   2015-08-07 12:42:56 PM   0.0%   0 of 0           0 of 0
-----
-<1> This application instance has completed the startup process and is actually able to accept requests.
-<2> This application instance is still starting and will not have any requests routed to it.
-====
+```
+    1. This application instance has completed the startup process and is actually able to accept requests.
+    2. This application instance is still starting and will not have any requests routed to it.
 
-. Eventually all instances will converge to a running state:
-+
-----
-$ cf app workshop
-Showing health and status for app workshop in org DEMO / space gammon as jtgammon@pivotal.io...
-OK
 
-requested state: started
-instances: 3/3
-usage: 512M x 3 instances
-urls: workshop.vert.fe.gopivotal.com, workshop-queasier-backup.vert.fe.gopivotal.com
-last uploaded: Fri Aug 7 13:15:14 UTC 2015
-stack: cflinuxfs2
-buildpack: java-buildpack=v3.0-offline-https://github.com/cloudfoundry/java-buildpack.git#3bd15e1 open-jdk-jre=1.8.0_40 spring-auto-reconfiguration=1.7.0_RELEASE tomcat-access-logging-support=2.4.0_RELEASE tomcat-instance=8.0.21 tomcat-lifecycle-support=2.4.0_REL...
+3. Eventually all instances will converge to a running state:
+    ```
+    $ cf app workshop
+    Showing health and status for app workshop in org DEMO / space gammon as jtgammon@pivotal.io...
+    OK
 
-     state     since                    cpu    memory           disk           details
-#0   running   2015-08-07 11:33:21 AM   0.1%   477.9M of 512M   144.4M of 1G
-#1   running   2015-08-07 12:43:04 PM   0.2%   396.2M of 512M   144.4M of 1G
-#2   running   2015-08-07 12:43:04 PM   0.2%   394.8M of 512M   144.4M of 1G
-----
+    requested state: started
+    instances: 3/3
+    usage: 512M x 3 instances
+    urls: workshop.vert.fe.gopivotal.com, workshop-queasier-backup.vert.fe.gopivotal.com
+    last uploaded: Fri Aug 7 13:15:14 UTC 2015
+    stack: cflinuxfs2
+    buildpack: java-buildpack=v3.0-offline-https://github.com/cloudfoundry/java-buildpack.git#3bd15e1 open-jdk-jre=1.8.0_40 spring-auto-reconfiguration=1.7.0_RELEASE tomcat-access-logging-support=2.4.0_RELEASE tomcat-instance=8.0.21 tomcat-lifecycle-support=2.4.0_REL...
 
-. Revisit the application route in the browser.
-Refresh several times.
-You should observe the instance index changing as you do so:
-+
-image::lab.png[]
-+
-The aforementioned http://docs.cloudfoundry.org/concepts/architecture/router.html[(Go)Router] is applying a random routing algorithm to all of the application instances assigned to this route.
-As an instance reaches the `running` state, its http://docs.cloudfoundry.org/concepts/architecture/execution-agent.html[DEA] registers that instance in the routing table assigned to its route by sending a message to Cloud Foundry's message bus.
-All (Go)Router instances are subscribed to this channel and register the routes independently.
-This makes for very dynamic and rapid reconfiguration!
+        state     since                    cpu    memory           disk           details
+    #0   running   2015-08-07 11:33:21 AM   0.1%   477.9M of 512M   144.4M of 1G
+    #1   running   2015-08-07 12:43:04 PM   0.2%   396.2M of 512M   144.4M of 1G
+    #2   running   2015-08-07 12:43:04 PM   0.2%   394.8M of 512M   144.4M of 1G
+    ```
 
-== Scale the Application Down
+4. Revisit the application route in the browser.
+    Refresh several times.
+    You should observe the instance index changing as you do so:
 
-. We can scale the application instances back down as easily as we scaled them up, using the same command structure:
-+
-----
-$ cf scale -i 1 workshop
-Scaling app workshop in org DEMO / space gammon as jtgammon@pivotal.io...
-OK
-----
+    ![](lab.png)
 
-. Check the application status again:
-+
-----
-$ cf app workshop
-Showing health and status for app workshop in org DEMO / space gammon as jtgammon@pivotal.io...
-OK
+    The aforementioned [(Go)Router](http://docs.cloudfoundry.org/concepts/architecture/router.html) is applying a random routing algorithm to all of the application instances assigned to this route.
+    As an instance reaches the `running` state, its [DEA](http://docs.cloudfoundry.org/concepts/architecture/execution-agent.html) registers that instance in the routing table assigned to its route by sending a message to Cloud Foundry's message bus.
+    All (Go)Router instances are subscribed to this channel and register the routes independently.
+    This makes for very dynamic and rapid reconfiguration!
 
-requested state: started
-instances: 1/1
-usage: 512M x 1 instances
-urls: workshop.vert.fe.gopivotal.com, workshop-queasier-backup.vert.fe.gopivotal.com
-last uploaded: Fri Aug 7 13:15:14 UTC 2015
-stack: cflinuxfs2
-buildpack: java-buildpack=v3.0-offline-https://github.com/cloudfoundry/java-buildpack.git#3bd15e1 open-jdk-jre=1.8.0_40 spring-auto-reconfiguration=1.7.0_RELEASE tomcat-access-logging-support=2.4.0_RELEASE tomcat-instance=8.0.21 tomcat-lifecycle-support=2.4.0_REL...
+## Scale the Application Down
 
-     state     since                    cpu    memory           disk           details
-#0   running   2015-08-07 11:33:21 AM   0.1%   477.9M of 512M   144.4M of 1G
-----
-+
-As you can see, we're back down to only one instance running, and it is in fact the original index 0 that we started with.
+1. We can scale the application instances back down as easily as we scaled them up, using the same command structure:
+    ```
+    $ cf scale -i 1 workshop
+    Scaling app workshop in org DEMO / space gammon as jtgammon@pivotal.io...
+    OK
+    ```
 
-. Confirm that by again revisiting the route in the browser and checking the instance index:
+2. Check the application status again:
+    ```
+    $ cf app workshop
+    Showing health and status for app workshop in org DEMO / space gammon as jtgammon@pivotal.io...
+    OK
+
+    requested state: started
+    instances: 1/1
+    usage: 512M x 1 instances
+    urls: workshop.vert.fe.gopivotal.com, workshop-queasier-backup.vert.fe.gopivotal.com
+    last uploaded: Fri Aug 7 13:15:14 UTC 2015
+    stack: cflinuxfs2
+    buildpack: java-buildpack=v3.0-offline-https://github.com/cloudfoundry/java-buildpack.git#3bd15e1 open-jdk-jre=1.8.0_40 spring-auto-reconfiguration=1.7.0_RELEASE tomcat-access-logging-support=2.4.0_RELEASE tomcat-instance=8.0.21 tomcat-lifecycle-support=2.4.0_REL...
+
+        state     since                    cpu    memory           disk           details
+    #0   running   2015-08-07 11:33:21 AM   0.1%   477.9M of 512M   144.4M of 1G
+    ```
+
+    As you can see, we're back down to only one instance running, and it is in fact the original index 0 that we started with.
+
+3. Confirm that by again revisiting the route in the browser and checking the instance index:
 +
 image::lab1.png[]
 
