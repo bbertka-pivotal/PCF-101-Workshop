@@ -1,6 +1,6 @@
 # Lab 1 - Pushing a NodeJS Application
 ## Target the Environment
-Follow the instructions in link: [Get Environment Access](../README.md)
+Follow the instructions in link: [Get Environment Access](../overview.md)
 
 ## Push It!
 - Change to the _nodejs-cf-sample-app_ sample application directory:  
