@@ -4,5 +4,5 @@ applications:
   host: dotnet-${random-word}
   memory: 512m
   stack: windows2012R2
-  buildpack: binary_buildpack
+  buildpack: hwc_buildpack
   instances: 1
