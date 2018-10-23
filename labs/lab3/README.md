@@ -1,6 +1,6 @@
 # Lab 3 - Operating your Application
 
-# Abstract
+## Abstract
 Pivotal Cloudfoundry makes the work of performing operations actions, such as scaling, doing a zero-downtime deploy, and managing application health very easy.
 In the next two labs we'll explore Pivotal Cloudfoundry operations.
 
