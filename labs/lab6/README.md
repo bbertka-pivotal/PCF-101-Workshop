@@ -1,44 +1,42 @@
-= Spring Cloud Services Lab
+# Spring Cloud Services Lab
 
 *Fortune Teller* is a very basic application composed of two services:
 
-. link:fortune-teller-fortune-service[Fortune Service] - serves up random Chinese fortune cookie fortunes
-. link:fortune-teller-ui[Fortune UI] - presents a UI that consumes the fortune service
+. [Fortune Service](../../spring-cloud-services-app/fortune-teller-fortune-service) - serves up random Chinese fortune cookie fortunes
+. [Fortune UI](../../spring-cloud-services-app/fortune-teller-ui) - presents a UI that consumes the fortune service
 
 It leverages libraries and services from Spring Cloud and Netflix OSS to compose the system.
 
 Fortune Teller is deployable to any Cloud Foundry environment utilizing the service components that have been packaged with the project.
-However, it is most easily deployed to Pivotal Cloud Foundry environments that have installed the https://network.pivotal.io/products/p-spring-cloud-services[Spring Cloud Services] package.
+However, it is most easily deployed to Pivotal Cloud Foundry environments that have installed the [Spring Cloud Services](https://network.pivotal.io/products/p-spring-cloud-services) package.
 
-== Building
+## Building
 
-. Using Maven, build and package the application:
-+
-----
+Using Maven, build and package the application:
+```bash
 $ cd spring-cloud-services-app
 $ mvn package
-----
-+
+```
+
 Maven will automatically download all of _Fortune Teller_'s dependencies. This may take a few moments.
 
 
-== Deploying to Pivotal Cloud Foundry with Spring Cloud Services
+## Deploying to Pivotal Cloud Foundry with Spring Cloud Services
 
 . Run `scripts/create_services_pcf.sh` to create the services that you need:
-+
-----
+```bash
 $ ./scripts/create_services_pcf.sh
-Creating service fortune-db in org microservices / space fortune-teller as admin...
+Creating service fortune-db in org microservices / space fortune-teller as developer...
 OK
-Creating service config-service in org microservices / space fortune-teller as admin...
+Creating service config-service in org microservices / space fortune-teller as developer...
 OK
-Creating service service-registry in org microservices / space fortune-teller as admin...
+Creating service service-registry in org microservices / space fortune-teller as developer...
 OK
-Creating service circuit-breaker in org microservices / space fortune-teller as admin...
+Creating service circuit-breaker in org microservices / space fortune-teller as developer...
 OK
-----
+```
 
-. In the Pivotal Cloud Foundry Apps Manager console, click on the *Manage* link for the *Config Server*. Once the service is initialized and the web form appears, paste the URL of this repository (https://github.com/bbertka-pivotal/PCF-101-Workshop) into the *Git URI* field and "spring-cloud-services-app/configuration" into the *Search Paths* field. Then click *Submit*.
+. In the Pivotal Cloud Foundry Apps Manager console, click on the *Manage* link for the *Config Server*. Once the service is initialized and the web form appears, paste the URL of this repository (https://github.com/tmobile-cf/PCF-101-Workshop) into the *Git URI* field and "spring-cloud-services-app/configuration" into the *Search Paths* field. Then click *Submit*.
 
 . Also click on the *Manage* links for the *Service Registry* and *Circuit Breaker*. Make sure the services are finished initializing before you proceed.
 
@@ -68,7 +66,7 @@ $ cf push
 This will push the fortunes service and the ui application and bind all of the services.
 
 
-== Testing the Application
+## Testing the Application
 
 . In a browser, access the fortunes-ui application at the route that was created for you:
 +

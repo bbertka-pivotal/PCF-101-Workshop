@@ -1,12 +1,10 @@
-= Lab 4 - Monitoring your Application
+# Lab 4 - Monitoring your Application
 
-[abstract]
---
+## Abstract
 Pivotal Cloudfoundry makes the work of performing operations actions, such as scaling, doing a zero-downtime deploy, and managing application health very easy.
 In the this labs we'll continue to explore Pivotal Cloudfoundry application operations.
---
 
-== Applciation Container and Network Monitoring with PCF Metrics
+## Applciation Container and Network Monitoring with PCF Metrics
 
 PCF Metrics helps developers better understand the health and performance of their apps by providing a near real-time view of critical data. Developers can see performance issues within two to three seconds, learn about events like an app crash as they occur, and look back in time to see what happened while they were away.
 
@@ -28,80 +26,69 @@ image:metrics.png[]
 
 
 
-== Tailing Application Logs
+## Tailing Application Logs
 
 One of the most important enablers of visibility into application behavior is logging.
 Effective management of logs has historically been very difficult.
 Cloud Foundry's https://github.com/cloudfoundry/loggregator[log aggregation] components simplify log management by assuming responsibility for it.
 Application developers need only log all messages to either `STDOUT` or `STDERR`, and the platform will capture these messages.
 
-=== For Developers
+### For Developers
 
 Application developers can view application logs using the CF CLI.
 
-. Let's view recent log messages for the application.  For this lab you can use the Java, Ruby, or Node.js sample app.  In each of the commands below replace _workshop_ with the name of your deployed application:
-+
-----
-$ cf logs workshop --recent
-----
-+
-Here are two interesting subsets of one output from that command:
-+
-.CF Component Logs
-====
-----
-2015-02-13T14:45:39.40-0600 [RTR/0]      OUT cf-scale-boot-stockinged-rust.cfapps.io - [13/02/2015:20:45:39 +0000] "GET /css/bootstrap.min.css HTTP/1.1" 304 0 "http://cf-scale-boot-stockinged-rust.cfapps.io/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36" 10.10.66.88:50372 x_forwarded_for:"50.157.39.197" vcap_request_id:84cc1b7a-bb30-4355-7512-5adaf36ff767 response_time:0.013115764 app_id:7a428901-1691-4cce-b7f6-62d186c5cb55 <1>
-2015-02-13T14:45:39.40-0600 [RTR/1]      OUT cf-scale-boot-stockinged-rust.cfapps.io - [13/02/2015:20:45:39 +0000] "GET /img/LOGO_CloudFoundry_Large.png HTTP/1.1" 304 0 "http://cf-scale-boot-stockinged-rust.cfapps.io/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36" 10.10.66.88:24323 x_forwarded_for:"50.157.39.197" vcap_request_id:b3e2466b-6a41-4c6d-5b3d-0f70702c0ec1 response_time:0.010003444 app_id:7a428901-1691-4cce-b7f6-62d186c5cb55
-2015-02-13T15:04:33.09-0600 [API/1]      OUT Tried to stop app that never received a start event <2>
-2015-02-13T15:04:33.51-0600 [DEA/12]     OUT Starting app instance (index 2) with guid 7a428901-1691-4cce-b7f6-62d186c5cb55 <3>
-2015-02-13T15:04:33.71-0600 [DEA/4]      OUT Starting app instance (index 3) with guid 7a428901-1691-4cce-b7f6-62d186c5cb55
-----
-<1> An ``Apache-style'' access log event from the (Go)Router
-<2> An API log event that corresponds to an event as shown in `cf events`
-<3> A DEA log event indicating the start of an application instance on that DEA.
-====
-+
-.Application Logs
-====
-----
-2015-02-13T16:01:50.28-0600 [App/0]      OUT 2015-02-13 22:01:50.282  INFO 36 --- [       runner-0] o.s.b.a.e.jmx.EndpointMBeanExporter      : Located managed bean 'autoConfigurationAuditEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=autoConfigurationAuditEndpoint]
-2015-02-13T16:01:50.28-0600 [App/0]      OUT 2015-02-13 22:01:50.287  INFO 36 --- [       runner-0] o.s.b.a.e.jmx.EndpointMBeanExporter      : Located managed bean 'shutdownEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=shutdownEndpoint]
-2015-02-13T16:01:50.29-0600 [App/0]      OUT 2015-02-13 22:01:50.299  INFO 36 --- [       runner-0] o.s.b.a.e.jmx.EndpointMBeanExporter      : Located managed bean 'configurationPropertiesReportEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=configurationPropertiesReportEndpoint]
-2015-02-13T16:01:50.36-0600 [App/0]      OUT 2015-02-13 22:01:50.359  INFO 36 --- [       runner-0] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 61316/http
-2015-02-13T16:01:50.36-0600 [App/0]      OUT Started...
-2015-02-13T16:01:50.36-0600 [App/0]      OUT 2015-02-13 22:01:50.364  INFO 36 --- [       runner-0] o.s.boot.SpringApplication               : Started application in 6.906 seconds (JVM running for 15.65)
-----
-====
-+
-As you can see, Cloud Foundry's log aggregation components capture both application logs and CF component logs relevant to your application.
-These events are properly interleaved based on time, giving you an accurate picture of events as they transpired across the system.
+1. Let's view recent log messages for the application.  For this lab you can use the Java, Ruby, or Node.js sample app.  In each of the commands below replace _workshop_ with the name of your deployed application:
+    `$ cf logs workshop --recent`
+    
+    Here are two interesting subsets of one output from that command:
+    1. CF Component Logs
+    ```
+    2015-02-13T14:45:39.40-0600 [RTR/0]      OUT cf-scale-boot-stockinged-rust.cfapps.io - [13/02/2015:20:45:39 +0000] "GET /css/bootstrap.min.css HTTP/1.1" 304 0 "http://cf-scale-boot-stockinged-rust.cfapps.io/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36" 10.10.66.88:50372 x_forwarded_for:"50.157.39.197" vcap_request_id:84cc1b7a-bb30-4355-7512-5adaf36ff767 response_time:0.013115764 app_id:7a428901-1691-4cce-b7f6-62d186c5cb55 <1>
+    2015-02-13T14:45:39.40-0600 [RTR/1]      OUT cf-scale-boot-stockinged-rust.cfapps.io - [13/02/2015:20:45:39 +0000] "GET /img/LOGO_CloudFoundry_Large.png HTTP/1.1" 304 0 "http://cf-scale-boot-stockinged-rust.cfapps.io/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.111 Safari/537.36" 10.10.66.88:24323 x_forwarded_for:"50.157.39.197" vcap_request_id:b3e2466b-6a41-4c6d-5b3d-0f70702c0ec1 response_time:0.010003444 app_id:7a428901-1691-4cce-b7f6-62d186c5cb55
+    2015-02-13T15:04:33.09-0600 [API/1]      OUT Tried to stop app that never received a start event <2>
+    2015-02-13T15:04:33.51-0600 [DEA/12]     OUT Starting app instance (index 2) with guid 7a428901-1691-4cce-b7f6-62d186c5cb55 <3>
+    2015-02-13T15:04:33.71-0600 [DEA/4]      OUT Starting app instance (index 3) with guid 7a428901-1691-4cce-b7f6-62d186c5cb55
+    ```  
+        1. An 'Apache-style' access log event from the (Go)Router
+        2. An API log event that corresponds to an event as shown in `cf events`
+        3. A DEA log event indicating the start of an application instance on that DEA.
 
-. To get a running ``tail'' of the application logs rather than a dump, simply type:
-+
-----
-$ cf logs workshop
-----
-+
-You can try various things like refreshing the browser and triggering stop/start events to see logs being generated.
 
-== Health Management
+    2. Application Logs
+    ```
+    2015-02-13T16:01:50.28-0600 [App/0]      OUT 2015-02-13 22:01:50.282  INFO 36 --- [       runner-0] o.s.b.a.e.jmx.EndpointMBeanExporter      : Located managed bean 'autoConfigurationAuditEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=autoConfigurationAuditEndpoint]
+    2015-02-13T16:01:50.28-0600 [App/0]      OUT 2015-02-13 22:01:50.287  INFO 36 --- [       runner-0] o.s.b.a.e.jmx.EndpointMBeanExporter      : Located managed bean 'shutdownEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=shutdownEndpoint]
+    2015-02-13T16:01:50.29-0600 [App/0]      OUT 2015-02-13 22:01:50.299  INFO 36 --- [       runner-0] o.s.b.a.e.jmx.EndpointMBeanExporter      : Located managed bean 'configurationPropertiesReportEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=configurationPropertiesReportEndpoint]
+    2015-02-13T16:01:50.36-0600 [App/0]      OUT 2015-02-13 22:01:50.359  INFO 36 --- [       runner-0] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 61316/http
+    2015-02-13T16:01:50.36-0600 [App/0]      OUT Started...
+    2015-02-13T16:01:50.36-0600 [App/0]      OUT 2015-02-13 22:01:50.364  INFO 36 --- [       runner-0] o.s.boot.SpringApplication               : Started application in 6.906 seconds (JVM running for 15.65)
+    ```
+
+
+    As you can see, Cloud Foundry's log aggregation components capture both application logs and CF component logs relevant to your application.
+    These events are properly interleaved based on time, giving you an accurate picture of events as they transpired across the system.
+
+2. To get a running 'tail' of the application logs rather than a dump, simply type:
+    `$ cf logs workshop`
+
+    You can try various things like refreshing the browser and triggering stop/start events to see logs being generated.
+
+## Health Management
 
 Cloud Foundry's http://docs.cloudfoundry.org/concepts/architecture/#hm9k[Heatlh Manager] actively monitors the health of our application processes and will restart them should they crash.
 
-. If you don't have one already running, start a log tail for `workshop`.  
-+
-----
-$ cf logs workshop
+1. If you don't have one already running, start a log tail for `workshop`.  
+    `$ cf logs workshop`
 ----
 
-. If you do not have more than one application instance running, execute the scale command to scale to 2 or more application instances.  Visit the application in the browser, and click on the ``Kill Switch'' button. This button will trigger a JVM exit with an error code (`System.exit(1)`), causing the Health Manager to observe an application instance crash:
+2. If you do not have more than one application instance running, execute the scale command to scale to 2 or more application instances.  Visit the application in the browser, and click on the ``Kill Switch'' button. This button will trigger a JVM exit with an error code (`System.exit(1)`), causing the Health Manager to observe an application instance crash:
 +
-image::lab.png[]
+![](lab.png)
 
-. After clicking the kill switch a couple of interesting things should happen.
+3. After clicking the kill switch a couple of interesting things should happen.
 First, you'll see an error code returned in the browser, as the request you submitted never returns a response:
 +
-image::lab1.png[]
+![](lab1.png)
 +
 Also, if you're paying attention to the log tail, you'll see some interesting log messages fly by:
 +
@@ -122,7 +109,7 @@ Also, if you're paying attention to the log tail, you'll see some interesting lo
 <3> The API logs that an application instance exited due to a crash.
 ====
 
-. Wait a few seconds...  By this time you should have noticed some additional interesting events in the logs:
+4. Wait a few seconds...  By this time you should have noticed some additional interesting events in the logs:
 +
 ====
 ----
@@ -137,11 +124,11 @@ Also, if you're paying attention to the log tail, you'll see some interesting lo
 <2> The new application instance starts logging events as it starts up.
 ====
 
-. Revisiting the *HOME PAGE* of the application (don't simply refresh the browser as you're still on the `/killSwitch` endpoint and you'll just kill the application again!) and you should see a fresh instance started:
+5. Revisiting the *HOME PAGE* of the application (don't simply refresh the browser as you're still on the `/killSwitch` endpoint and you'll just kill the application again!) and you should see a fresh instance started:
 +
-image::lab2.png[]
+![](lab2.png)
 
-== Viewing Application _Events_
+## Viewing Application _Events_
 
 Cloud Foundry only allows application configuration to be modified via its API.
 This gives application operators confidence that all changes to application configuration are known and auditable.
